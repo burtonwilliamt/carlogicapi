@@ -7,5 +7,5 @@ In the spirit of open source, the project is open to suggestions, comments, and 
 
 # Contributors
 
-* William Burton
-* Greg Cowan
+* [William Burton](https://github.com/burtonwilliamt)
+* [Greg Cowan](https://github.com/cowang4)
