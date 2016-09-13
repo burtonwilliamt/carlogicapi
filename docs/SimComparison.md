@@ -26,7 +26,12 @@
 ### Pros
 * Mapping (OpenStreetMap)
 * reconfiguration of vehicles from network packets
+* Documentation
+* Simulates network traffic as well?
 
 ### Cons
 * Compexity
+* C++
+
+## 
 
