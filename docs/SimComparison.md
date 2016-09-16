@@ -27,11 +27,19 @@
 * Mapping (OpenStreetMap)
 * reconfiguration of vehicles from network packets
 * Documentation
-* Simulates network traffic as well?
+* Simulates network traffic as well 802.11p and 1609.4 WAVE
 
 ### Cons
 * Compexity
 * C++
 
-## 
+## [SUMO](http://sumo.dlr.de/wiki/Main_Page)
+
+### Pros
+* Documentation
+* Maturity
+
+### Cons
+* Included in Veins
+* No network sim
 
