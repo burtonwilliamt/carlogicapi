@@ -42,5 +42,5 @@ Check out the [Contributing](https://github.com/burtonwilliamt/carlogicapi/blob/
 ## Learn More
 Head over to the project's [Wiki](https://github.com/burtonwilliamt/carlogicapi/wiki) to read the documentation we've written about the project.
 
-### License
+## License
 We have one! [Apache 2.0](https://github.com/burtonwilliamt/carlogicapi/blob/master/LICENSE.txt)
