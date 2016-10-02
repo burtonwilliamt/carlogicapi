@@ -29,7 +29,7 @@ Week starting day | Goals
 10/17 | Implement a small number of algorithms/scenarios
 10/24 | Bug test and document both algorithms and comm. layer
 10/31 | Improve the comm. layer and and scenarios handled
-11/7 | Above Continued
+11/7 | Above Continued **11/11 Big Group Presentation**
 11/14 | Above Continued
 11/21(Thanksgiving break) | Take a break.
 11/28 | Bug testing and clean up
