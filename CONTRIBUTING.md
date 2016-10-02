@@ -9,3 +9,4 @@ In the spirit of open source, the project is open to suggestions, comments, and 
 
 * [William Burton](https://github.com/burtonwilliamt)
 * [Greg Cowan](https://github.com/cowang4)
+* [Anthony DeLorenzo](https://github.com/sptfire127)
