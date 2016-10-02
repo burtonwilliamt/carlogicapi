@@ -38,3 +38,6 @@ Week starting day | Goals
 
 ## Contributing
 Check out the [Contributing](https://github.com/burtonwilliamt/carlogicapi/blob/master/CONTRIBUTING.md) document for details about contributing to the project.
+
+## Learn More
+Head over to the project's [Wiki](https://github.com/burtonwilliamt/carlogicapi/wiki) to read the documentation we've written about the project.
