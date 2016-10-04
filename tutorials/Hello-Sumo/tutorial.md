@@ -1,10 +1,3 @@
-#Tutorials
-
-Many of the tutorials on the websites are either A) confusing, or B) too in-depth. Read below to see what we thought we could do better on.
-
-
-##Sumo
-
 ###Basic Sumo run-through
 
 This tutorial is the Hello Sumo tutorial found [here](http://sumo.dlr.de/wiki/Tutorials/Hello_Sumo). This will show you how to create your own simulation from nothing.
