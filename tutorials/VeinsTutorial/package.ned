@@ -1,0 +1,3 @@
+package veinstutorial;
+
+@license(LGPL);
