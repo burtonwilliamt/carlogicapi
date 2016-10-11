@@ -19,13 +19,14 @@ using Veins::TraCICommandInterface;
 class TutorialAppl : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
+        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details);
     protected:
         TraCIMobility* mobility;
         TraCICommandInterface* traci;
         TraCICommandInterface::Vehicle* traciVehicle;
 
         virtual void onData(WaveShortMessage* wsm);
-        virtual void onBeacon(WaveShortMessage* wsm) {}
+        virtual void onBeacon(WaveShortMessage* wsm);
         virtual void handlePositionUpdate(cObject* obj);
         void sendMessage(std::string blockedRoadId);
         virtual void sendWSM(WaveShortMessage* wsm);

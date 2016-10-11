@@ -16,8 +16,19 @@ void TutorialAppl::initialize(int stage) {
     }
 }
 
+void TutorialAppl::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details) {
+    Enter_Method_Silent();
+    if (signalID == mobilityStateChangedSignal) {
+        handlePositionUpdate(obj);
+    }
+}
+
 void TutorialAppl::onData(WaveShortMessage* wsm) {
     //TODO: do something when receive a message
+}
+
+void TutorialAppl::onBeacon(WaveShortMessage* wsm) {
+    //do something
 }
 
 void TutorialAppl::handlePositionUpdate(cObject* obj) {

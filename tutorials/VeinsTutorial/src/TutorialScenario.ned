@@ -16,14 +16,9 @@
 package veinstutorial.src;
 
 import org.car2x.veins.nodes.Scenario;
-import veinstutorial.src.Car;
 
 network TutorialScenario extends Scenario
 {
 	//inherited from Scenario
-	parameters:
-		int carCount = default(200);
-	submodules:
-		node[carCount] : Car {}
 	connections allowunconnected:
 }

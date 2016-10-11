@@ -1,0 +1,58 @@
+file 30172 1476209712                                           
+version 2
+run General-0-20161011-14:14:57-9670
+attr configname General
+attr datetime 20161011-14:14:57
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network TutorialScenario
+attr processid 9670
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 2  TutorialScenario.node[0].veinsmobility  posx  ETV
+vector 3  TutorialScenario.node[0].veinsmobility  posy  ETV
+vector 4  TutorialScenario.node[0].veinsmobility  speed  ETV
+vector 5  TutorialScenario.node[0].veinsmobility  acceleration  ETV
+vector 6  TutorialScenario.node[0].veinsmobility  co2emission  ETV
+vector 9  TutorialScenario.node[1].veinsmobility  posx  ETV
+vector 10  TutorialScenario.node[1].veinsmobility  posy  ETV
+vector 11  TutorialScenario.node[1].veinsmobility  speed  ETV
+vector 12  TutorialScenario.node[1].veinsmobility  acceleration  ETV
+vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
+vector 16  TutorialScenario.node[2].veinsmobility  posx  ETV
+vector 17  TutorialScenario.node[2].veinsmobility  posy  ETV
+vector 18  TutorialScenario.node[2].veinsmobility  speed  ETV
+vector 19  TutorialScenario.node[2].veinsmobility  acceleration  ETV
+vector 20  TutorialScenario.node[2].veinsmobility  co2emission  ETV
+vector 23  TutorialScenario.node[3].veinsmobility  posx  ETV
+vector 24  TutorialScenario.node[3].veinsmobility  posy  ETV
+vector 25  TutorialScenario.node[3].veinsmobility  speed  ETV
+vector 26  TutorialScenario.node[3].veinsmobility  acceleration  ETV
+vector 27  TutorialScenario.node[3].veinsmobility  co2emission  ETV
+6	1650 3974 7 811 0.3 15.8 156 1.167848739031 5.3785304753267 479.84272093185 1702.9748001574
+5	5624 1887 7 811 0.3 15.8 156 0 1 138 138
+4	7511 2225 4 811 0.2 15.8 157 0.1 13.9 1223.2 12526.68
+3	9736 2521 2 811 0.1 15.8 158 26.65 26.65 4210.7 112215.155
+2	12257 2523 2 811 0.1 15.8 158 27.1 148.03 10721.67 939745.1783
+13	14780 2839 160 811 5.3 15.8 106 1.167848739031 4.3180361002918 287.83804305202 870.3687285366
+12	17619 1417 160 811 5.3 15.8 106 1 1 106 106
+11	19036 1632 155 811 5.2 15.8 107 0.1 10.7 577.8 4140.9
+10	20668 1875 151 811 5.1 15.8 108 26.65 26.65 2878.2 76704.03
+9	22543 1740 151 811 5.1 15.8 108 27.1 83.81 4968.36 260086.2102
+20	24283 1525 413 811 10.3 15.8 56 1.167848739031 2.7757759219238 110.19486479074 229.31932909734
+19	25808 774 413 811 10.3 15.8 56 1 1 56 56
+18	26582 892 406 811 10.2 15.8 57 0.1 5.7 165.3 633.65
+17	27474 1034 400 811 10.1 15.8 58 26.65 26.65 1545.7 41192.905
+16	28508 1018 400 811 10.1 15.8 58 27.1 43.06 1880.36 62326.6492
+27	29526 165 766 811 15.3 15.8 6 1.167848739031 1.3124996859558 7.441020332663 9.2427772138421
+26	29691 84 766 811 15.3 15.8 6 1 1 6 6
+25	29775 112 757 811 15.2 15.8 7 0.1 0.7 2.8 1.4
+24	29887 144 749 811 15.1 15.8 8 26.65 26.65 213.2 5681.78
+23	30031 141 749 811 15.1 15.8 8 27.1 27.31 217.36 5905.7132

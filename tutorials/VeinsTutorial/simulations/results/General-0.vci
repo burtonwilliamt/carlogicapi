@@ -1,0 +1,38 @@
+file 7990 1476209815                                            
+version 2
+run General-0-20161011-14:16:47-12020
+attr configname General
+attr datetime 20161011-14:16:47
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network veinstutorial.src.TutorialScenario
+attr processid 12020
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 2  TutorialScenario.node[0].veinsmobility  posx  ETV
+vector 3  TutorialScenario.node[0].veinsmobility  posy  ETV
+vector 4  TutorialScenario.node[0].veinsmobility  speed  ETV
+vector 5  TutorialScenario.node[0].veinsmobility  acceleration  ETV
+vector 6  TutorialScenario.node[0].veinsmobility  co2emission  ETV
+vector 9  TutorialScenario.node[1].veinsmobility  posx  ETV
+vector 10  TutorialScenario.node[1].veinsmobility  posy  ETV
+vector 11  TutorialScenario.node[1].veinsmobility  speed  ETV
+vector 12  TutorialScenario.node[1].veinsmobility  acceleration  ETV
+vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
+6	1028 1661 7 240 0.3 6.9 67 1.167848739031 3.1058788759962 142.70520702754 325.50234860281
+5	2689 760 7 240 0.3 6.9 67 1 1 67 67
+4	3449 894 4 240 0.2 6.9 68 0.1 6.8 234.6 1071.34
+3	4343 1056 2 240 0.1 6.9 69 26.65 26.65 1838.85 49005.3525
+2	5399 1037 2 240 0.1 6.9 69 27.1 49.88 2393.84 86338.8858
+13	6436 450 160 240 5.3 6.9 17 1.167848739031 1.6311707536282 23.789781158451 33.633473600687
+12	6886 219 160 240 5.3 6.9 17 1 1 17 17
+11	7105 266 155 240 5.2 6.9 18 0.1 1.8 17.1 21.09
+10	7371 321 151 240 5.1 6.9 19 26.65 26.65 506.35 13494.2275
+9	7692 298 151 240 5.1 6.9 19 27.1 28.63 524.59 14488.3873
