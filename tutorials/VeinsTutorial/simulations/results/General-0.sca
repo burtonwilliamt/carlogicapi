@@ -1,14 +1,14 @@
 version 2
-run General-0-20161011-14:16:47-12020
+run General-0-20161011-14:23:58-23130
 attr configname General
-attr datetime 20161011-14:16:47
+attr datetime 20161011-14:23:58
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network veinstutorial.src.TutorialScenario
-attr processid 12020
+attr processid 23130
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -29,12 +29,12 @@ scalar TutorialScenario.node[0].nic.mac1609_4 	SlotsBackoff 	0
 scalar TutorialScenario.node[0].nic.mac1609_4 	NumInternalContention 	0
 scalar TutorialScenario.node[0].nic.mac1609_4 	totalBusyTime 	0
 scalar TutorialScenario.node[0].veinsmobility 	startTime 	0.1
-scalar TutorialScenario.node[0].veinsmobility 	totalTime 	6.8
-scalar TutorialScenario.node[0].veinsmobility 	stopTime 	6.950131276162
+scalar TutorialScenario.node[0].veinsmobility 	totalTime 	6.9
+scalar TutorialScenario.node[0].veinsmobility 	stopTime 	7.050180829011
 scalar TutorialScenario.node[0].veinsmobility 	minSpeed 	0.1
-scalar TutorialScenario.node[0].veinsmobility 	maxSpeed 	6.8
-scalar TutorialScenario.node[0].veinsmobility 	totalDistance 	23.46
-scalar TutorialScenario.node[0].veinsmobility 	totalCO2Emission 	14.270520702754
+scalar TutorialScenario.node[0].veinsmobility 	maxSpeed 	6.9
+scalar TutorialScenario.node[0].veinsmobility 	totalDistance 	24.15
+scalar TutorialScenario.node[0].veinsmobility 	totalCO2Emission 	14.584131032103
 scalar TutorialScenario.node[1].nic.phy80211p 	busyTime 	0
 scalar TutorialScenario.node[1].nic.mac1609_4 	ReceivedUnicastPackets 	0
 scalar TutorialScenario.node[1].nic.mac1609_4 	ReceivedBroadcasts 	0
@@ -49,9 +49,9 @@ scalar TutorialScenario.node[1].nic.mac1609_4 	SlotsBackoff 	0
 scalar TutorialScenario.node[1].nic.mac1609_4 	NumInternalContention 	0
 scalar TutorialScenario.node[1].nic.mac1609_4 	totalBusyTime 	0
 scalar TutorialScenario.node[1].veinsmobility 	startTime 	5.1
-scalar TutorialScenario.node[1].veinsmobility 	totalTime 	1.8
-scalar TutorialScenario.node[1].veinsmobility 	stopTime 	6.950131276162
+scalar TutorialScenario.node[1].veinsmobility 	totalTime 	1.9
+scalar TutorialScenario.node[1].veinsmobility 	stopTime 	7.050180829011
 scalar TutorialScenario.node[1].veinsmobility 	minSpeed 	0.1
-scalar TutorialScenario.node[1].veinsmobility 	maxSpeed 	1.8
-scalar TutorialScenario.node[1].veinsmobility 	totalDistance 	1.71
-scalar TutorialScenario.node[1].veinsmobility 	totalCO2Emission 	2.3789781158451
+scalar TutorialScenario.node[1].veinsmobility 	maxSpeed 	1.9
+scalar TutorialScenario.node[1].veinsmobility 	totalDistance 	1.9
+scalar TutorialScenario.node[1].veinsmobility 	totalCO2Emission 	2.5449970785189

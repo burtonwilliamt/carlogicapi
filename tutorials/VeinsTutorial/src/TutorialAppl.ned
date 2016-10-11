@@ -14,10 +14,10 @@
 // 
 
 package veinstutorial.src;
-
 import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
 simple TutorialAppl extends BaseWaveApplLayer
 {
 	//declarations go here
+	@class(TutorialAppl);
 }

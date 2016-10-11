@@ -1,14 +1,14 @@
 version 2
-run General-0-20161011-14:16:47-12020
+run General-0-20161011-14:23:58-23130
 attr configname General
-attr datetime 20161011-14:16:47
+attr datetime 20161011-14:23:58
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network veinstutorial.src.TutorialScenario
-attr processid 12020
+attr processid 23130
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -92,6 +92,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 6	230	6.7	3.0455425584845
 6	235	6.8	3.0756921490854
 6	240	6.9	3.1058788759962
+6	245	7	3.1361032934899
 5	7	0.3	1
 5	10	0.4	1
 5	13	0.5	1
@@ -159,6 +160,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 5	230	6.7	1
 5	235	6.8	1
 5	240	6.9	1
+5	245	7	1
 4	4	0.2	0.1
 4	7	0.3	0.2
 4	10	0.4	0.3
@@ -227,6 +229,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 4	230	6.7	6.6
 4	235	6.8	6.7
 4	240	6.9	6.8
+4	245	7	6.9
 3	2	0.1	26.65
 3	4	0.2	26.65
 3	7	0.3	26.65
@@ -296,6 +299,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 3	230	6.7	26.65
 3	235	6.8	26.65
 3	240	6.9	26.65
+3	245	7	26.65
 2	2	0.1	27.1
 2	4	0.2	27.1
 2	7	0.3	27.11
@@ -365,6 +369,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 2	230	6.7	48.55
 2	235	6.8	49.21
 2	240	6.9	49.88
+2	245	7	50.56
 13	160	5.3	1.167848739031
 13	165	5.4	1.1967744942298
 13	170	5.5	1.2257019122483
@@ -382,6 +387,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 13	230	6.7	1.5731623838925
 13	235	6.8	1.6021618574374
 13	240	6.9	1.6311707536282
+13	245	7	1.6601896267379
 12	160	5.3	1
 12	165	5.4	1
 12	170	5.5	1
@@ -399,6 +405,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 12	230	6.7	1
 12	235	6.8	1
 12	240	6.9	1
+12	245	7	1
 11	155	5.2	0.1
 11	160	5.3	0.2
 11	165	5.4	0.3
@@ -417,6 +424,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 11	230	6.7	1.6
 11	235	6.8	1.7
 11	240	6.9	1.8
+11	245	7	1.9
 10	151	5.1	26.65
 10	155	5.2	26.65
 10	160	5.3	26.65
@@ -436,6 +444,7 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 10	230	6.7	26.65
 10	235	6.8	26.65
 10	240	6.9	26.65
+10	245	7	26.65
 9	151	5.1	27.1
 9	155	5.2	27.1
 9	160	5.3	27.11
@@ -455,3 +464,4 @@ vector 13  TutorialScenario.node[1].veinsmobility  co2emission  ETV
 9	230	6.7	28.3
 9	235	6.8	28.46
 9	240	6.9	28.63
+9	245	7	28.81
