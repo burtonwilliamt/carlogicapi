@@ -15,15 +15,9 @@
 
 package veinstutorial.src;
 
-import org.car2x.veins.nodes.Scenario;
-import veinstutorial.src.Car;
+import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
-network TutorialScenario extends Scenario
+simple TutorialAppl extends BaseWaveApplLayer
 {
-	//inherited from Scenario
-	parameters:
-		int carCount = default(200);
-	submodules:
-		node[carCount] : Car {}
-	connections allowunconnected:
+	//declarations go here
 }
