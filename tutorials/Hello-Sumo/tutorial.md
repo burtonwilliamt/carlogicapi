@@ -73,3 +73,6 @@ This file will setup the simulation, pointing the sumo at the files that we want
 
 6. When you're ready to run your simulation, do so by running the following command:
 `sumo-gui -c hello.sumo.cfg`
+This will open up the simulation application, with your sim loaded up. The hello.settings.xml file we made had the setting `<delay value="100"/>`which set the delay between steps to 100ms. You can see this delay value in the top middle of the toolbar at the top of the page. You can change this value here, then run the simulation with the play button. To the left is a reset button if you want to start your simulation again. 
+
+If you're still interested, go to the sumo wiki to learn some more basics about the application. There's lots of helpful information over there.
