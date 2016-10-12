@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+	<copy file="hello.net.xml" />
+	<copy file="hello.rou.xml" />
+	<!-- <copy file="tutorial.poly.xml" /> -->
+	<copy file="hello.sumo.cfg" type="config" />
+</launch>

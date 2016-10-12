@@ -1,13 +1,13 @@
 ###Basic Sumo run-through
 
-This tutorial is the Hello Sumo tutorial found [here](http://sumo.dlr.de/wiki/Tutorials/Hello_Sumo). This will show you how to create your own simulation from nothing.
+This tutorial is an overview of the Hello Sumo Tutorial. If you want to dig deeper into the code, I suggest you go read it [here](http://sumo.dlr.de/wiki/Tutorials/Hello_Sumo). This will show you how to create your own simulation from nothing.
 
 1. Create a directory to place your files in. In my case, I called this Hello-Sumo/.
 
 2. The two necessary components to run a simulation are: a road network(described in the .net.xml) and cars to run on the network(described by the .rou.xml file). The first of these is generated from two parts. The first is a list of nodes, or junctions in the road network(a .nod.xml file). The second is a list of edges, which describes how those junctions are connected(a .edg.xml file). Note: these two files are only used to generate the .net.xml file.
     * First create a file called hello.nod.xml, and in it describe three nodes like this:
     ```
-    #filename: hello.nod.xml
+    <!-- filename: hello.nod.xml -->
     <nodes>
         <node id="1" x="-250.0" y="0.0" />
         <node id="2" x="+250.0" y="0.0" />
@@ -17,7 +17,7 @@ This tutorial is the Hello Sumo tutorial found [here](http://sumo.dlr.de/wiki/Tu
     These three nodes are junctions in our road. The id is a unique id, and the coordinates are specified.
     * Then create your edges file called hello.edg.xml, then describe the two edges like this:
     ```
-    #filename: hello.edg.xml
+    <!-- filename: hello.edg.xml -->
     <edges>
       <edge from="1" id="1to2" to="2" />
       <edge from="2" id="out" to="3" />
@@ -35,7 +35,7 @@ This tutorial is the Hello Sumo tutorial found [here](http://sumo.dlr.de/wiki/Tu
 
 4. Once you're properly satisfied with your majestic road network, you can put a vehicle on it. Do this by creating the hello.rou.xml routes file. Paste the following into it:
     ```
-   #filename: hello.rou.xml
+   <!-- filename: hello.rou.xml -->
     <routes>
         <vType accel="1.0" decel="5.0" id="Car" length="2.0" maxSpeed="100.0" sigma="0.0" />
         <route id="route0" edges="1to2 out"/>
@@ -49,7 +49,7 @@ This file describes three things:
 
 5. The last thing we should do is create a sumo config file. Name this hello.sumo.cfg, and past the following into it.
   ```
-  #filename: hello.sumo.cfg
+  <!-- filename: hello.sumo.cfg -->
   <configuration>
     <input>
         <net-file value="hello.net.xml"/>
@@ -64,7 +64,7 @@ This file describes three things:
   ```
 This file will setup the simulation, pointing the sumo at the files that we want to use. You can see that there is a gui file specified. This file will be called hello.settings.xml. Put the following in that file:
   ```
-  #filename: hello.settings.xml
+  <!-- filename: hello.settings.xml -->
   <viewsettings>
       <viewport y="0" x="250" zoom="100"/>
       <delay value="100"/>
