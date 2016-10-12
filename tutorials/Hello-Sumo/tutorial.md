@@ -1,6 +1,6 @@
 ###Basic Sumo run-through
 
-This tutorial is the Hello Sumo tutorial found [here](http://sumo.dlr.de/wiki/Tutorials/Hello_Sumo). This will show you how to create your own simulation from nothing.
+This tutorial is an overview of the Hello Sumo Tutorial. If you want to dig deeper into the code, I suggest you go read it [here](http://sumo.dlr.de/wiki/Tutorials/Hello_Sumo). This will show you how to create your own simulation from nothing.
 
 1. Create a directory to place your files in. In my case, I called this Hello-Sumo/.
 
