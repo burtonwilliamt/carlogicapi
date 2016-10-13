@@ -24,6 +24,7 @@ class TutorialAppl : public BaseWaveApplLayer {
         TraCIMobility* mobility;
         TraCICommandInterface* traci;
         TraCICommandInterface::Vehicle* traciVehicle;
+        simtime_t lastSent; // the last time this sent a message
 
         virtual void onData(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm);

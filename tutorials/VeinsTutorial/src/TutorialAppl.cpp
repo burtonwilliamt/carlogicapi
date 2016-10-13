@@ -1,4 +1,5 @@
 
+#include <stdlib.h>
 #include "TutorialAppl.h"
 
 using Veins::TraCIMobilityAccess;
@@ -13,6 +14,7 @@ void TutorialAppl::initialize(int stage) {
         mobility = TraCIMobilityAccess().get(getParentModule());
         traci = mobility->getCommandInterface();
         traciVehicle = mobility->getVehicleCommandInterface();
+        lastSent = simTime();
     }
 }
 
@@ -24,17 +26,24 @@ void TutorialAppl::receiveSignal(cComponent* source, simsignal_t signalID, cObje
 }
 
 void TutorialAppl::onData(WaveShortMessage* wsm) {
-    //TODO: do something when receive a message
+    //Receive a message with a target speed, slow down to that speed
+    float message_speed = atof(wsm->getWsmData());
+    traciVehicle->slowDown(message_speed, 1000); //slow down over 1s
 }
 
 void TutorialAppl::onBeacon(WaveShortMessage* wsm) {
-    //do something
+    //do something on receiving a message from a beacon
 }
 
 void TutorialAppl::handlePositionUpdate(cObject* obj) {
     BaseWaveApplLayer::handlePositionUpdate(obj);
 
-    //TODO: do something when position updates
+    //sends message every 5 seconds
+    if (simTime() - lastSent >= 5) {
+        std::string message = std::to_string(mobility->getSpeed());
+        sendMessage(message);
+        lastSent = simTime();
+    }
 }
 
 void TutorialAppl::sendWSM(WaveShortMessage* wsm) {

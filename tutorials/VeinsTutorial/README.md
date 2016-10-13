@@ -2,7 +2,7 @@
 
 I've made a simplified example project in order to make it easier to learn Veins, since the example included with Veins doesn't include any documentation and can be hard to understand.
 
-I suggest at least reading through the [Hello-Sumo tutorial](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/Hello-Sumo/tutorial.md) and this [OMNet++ Tic-Toc Example](https://omnetpp.org/doc/omnetpp/tictoc-tutorial/) if you haven't already. Once you've done that you should understand how .ned files define the network in the OMNet++ simulation, how simple .ned classes have C++ code behind them, and how to configure a SUMO simulation. This tutorial should help you learn Veins, which connects OMNet++ for network simulation and SUMO for road simulation. Since a lot of the files inherit from files in the Veins project, you'll need to download Veins; check out the [Veins Download](http://veins.car2x.org/download/) to get it.
+I suggest at least reading through the [Hello-Sumo tutorial](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/Hello-Sumo/tutorial.md) and this [OMNet++ Tic-Toc Example](https://omnetpp.org/doc/omnetpp/tictoc-tutorial/) before doing this one. Once you've done that you should understand how .ned files define the network in the OMNet++ simulation, how simple .ned classes have C++ code behind them, and how to configure a SUMO simulation. This tutorial should help you learn Veins, which connects OMNet++ for network simulation and SUMO for road simulation. Since a lot of the files inherit from files in the Veins project, you can download the Veins source code; check out the [Veins Download](http://veins.car2x.org/download/) to get it. If you want to run it, you'll need to install Veins and its dependencies. See the [Veins Install Guide](http://veins.car2x.org/tutorial/) until we write a better one.
 
 ### Architecture
 
@@ -111,8 +111,146 @@ This class uses the same syntax for parameters and submodules, but introduces th
 
 ### TraCIMobility
 
-TraCIMobility is the simple class that holds driving-related code. It is in org.car2x.veins.modules.mobility.traci.TraCIMobility and has a .ned, .h, and .cc file. The .ned file pretty much only defines some parameters. But the C++ code is the real deal. The `TraCIMobility::changePosition()` function moves the node in the OMNet++ simulation according to the messages from the SUMO sim over TraCI. There is also code to record statistics and even some to force an accident! We won't be using that in this example, though the example provided with Veins does. Since these TraCIMobility files are long, they aren't included here, instead have a [link to the source](https://github.com/sommer/veins/blob/master/src/veins/modules/mobility/traci/TraCIMobility.cc).
+TraCIMobility is the simple class that holds driving-related code. It is in `org.car2x.veins.modules.mobility.traci.TraCIMobility` and has a .ned, .h, and .cc file. The .ned file pretty much only defines some parameters. But the C++ code is the real deal. The `TraCIMobility::changePosition()` function moves the node in the OMNet++ simulation according to the messages from the SUMO sim over TraCI.
+```
+void TraCIMobility::changePosition()
+{
+	// ensure we're not called twice in one time step
+	ASSERT(lastUpdate != simTime());
+
+	// keep statistics (for current step)
+	currentPosXVec.record(move.getStartPos().x);
+	currentPosYVec.record(move.getStartPos().y);
+
+	Coord nextPos = calculateAntennaPosition(roadPosition);
+	nextPos.z = move.getCurrentPosition().z;
+
+	// keep statistics (relative to last step)
+	if (statistics.startTime != simTime()) {
+		simtime_t updateInterval = simTime() - this->lastUpdate;
+
+		double distance = move.getStartPos().distance(nextPos);
+		statistics.totalDistance += distance;
+		statistics.totalTime += updateInterval;
+		if (speed != -1) {
+			statistics.minSpeed = std::min(statistics.minSpeed, speed);
+			statistics.maxSpeed = std::max(statistics.maxSpeed, speed);
+			currentSpeedVec.record(speed);
+			if (last_speed != -1) {
+				double acceleration = (speed - last_speed) / updateInterval;
+				double co2emission = calculateCO2emission(speed, acceleration);
+				currentAccelerationVec.record(acceleration);
+				currentCO2EmissionVec.record(co2emission);
+				statistics.totalCO2Emission+=co2emission * updateInterval.dbl();
+			}
+			last_speed = speed;
+		} else {
+			last_speed = -1;
+			speed = -1;
+		}
+	}
+	this->lastUpdate = simTime();
+
+	move.setStart(Coord(nextPos.x, nextPos.y, move.getCurrentPosition().z)); // keep z position
+	move.setDirectionByVector(Coord(cos(angle), -sin(angle)));
+	move.setSpeed(speed);
+	if (hasGUI()) updateDisplayString();
+	fixIfHostGetsOutside();
+	updatePosition();
+}
+```
+There is also code to record statistics and even some to force an accident! Since these TraCIMobility files are long, they aren't fully included here, instead have a [link to the source](https://github.com/sommer/veins/blob/master/src/veins/modules/mobility/traci/TraCIMobility.cc).
 
 ### TutorialAppl
 
-The application part of the Car is in the TutorialAppl class which is comprised of a .ned, a .h, and a .cpp in the src folder included in the VeinsTutorial project. It defines what 
+The application part of the Car is in the TutorialAppl class which is comprised of a .ned, a .h, and a .cpp in the src folder included in the VeinsTutorial project [here](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/VeinsTutorial/src/TutorialAppl.cpp). It handles the messages from other Cars, sending and receiving them. In this example, I've made the cars slow down when they receive a message from another car. This is supposed to sync the Car's speeds, and it serves as a simple example. Here is a function that gets called everytime SUMO updates the position of the Car.
+```
+void TutorialAppl::handlePositionUpdate(cObject* obj) {
+    BaseWaveApplLayer::handlePositionUpdate(obj);
+
+    //sends message every 5 seconds
+    if (simTime() - lastSent >= 5) {
+        std::string message = std::to_string(mobility->getSpeed());
+        sendMessage(message);
+        lastSent = simTime();
+    }
+}
+```
+And here is the code that matches the speed upon receiving a message:
+```
+void TutorialAppl::onData(WaveShortMessage* wsm) {
+    //Receive a message with a target speed, slow down to that speed
+    float message_speed = atof(wsm->getWsmData());
+    traciVehicle->slowDown(message_speed, 1000); //slow down over 1s
+}
+```
+
+### omnetpp.ini
+
+The omnetpp.ini file is where all the parameters in .ned files get set. It serves as a configuration file for the Veins simulation. The parameters can be confusing to find because of the inheritance structure and the star expansions. The argument names are dotted off of the variable names, not the classes. And star expansion works in the Unix way. The beginning `*.` before everything is the TutorialScenario object. And `**` is any number of nested `*.`s.
+```
+[General]
+cmdenv-express-mode = true
+cmdenv-autoflush = true
+cmdenv-status-frequency = 10000000s
+ned-path = .
+debug-on-errors = true
+
+network = veinstutorial.src.TutorialScenario  # the package where the Scenario is
+
+##### Simulation Parameters ######
+# * means TutorialScenario at the begginning
+sim-time-limit = 1000s
+#tkenv-image-path = path/to/background/image.png
+*.playgroundSizeX = 1000m
+*.playgroundSizeY = 1000m
+*.playgroundSizeZ = 50m
+
+##### TraCIScenarioManager Parameters ######
+*.manager.updateInterval = 0.1s
+*.manager.host = "localhost"
+*.manager.port = 9999
+*.manager.autoShutdown = false
+*.manager.moduleType = "org.car2x.veins.nodes.Car"
+*.manager.moduleName = "node"
+*.manager.moduleDisplayString = ""
+*.manager.launchConfig = xmldoc("tutorial.launchd.xml")
+
+##### IEEE 802.11p Wireless Parameters #######
+*.connectionManager.pMax = 20mW
+*.connectionManager.sat = -89dBm
+*.connectionManager.alpha = 2.0
+*.connectionManager.carrierFrequency = 5.890e9 Hz
+*.connectionManager.sendDirect = true
+
+*.node[*].nicType = "Nic80211p"
+
+*.**.nic.mac1609_4.txPower = 20mW
+*.**.nic.mac1609_4.bitrate = 18Mbps
+
+*.**.nic.phy80211p.sensitivity = -89dBm
+*.**.nic.phy80211p.useThermalNoise = true
+*.**.nic.phy80211p.thermalNoise = -110dBm
+*.**.nic.phy80211p.decider = xmldoc("config.xml")
+*.**.nic.phy80211p.analogueModels = xmldoc("config.xml")
+*.**.nic.phy80211p.usePropagationDelay = true
+
+##### Car Parameters #####
+# Application Parameters
+*.node[*].applType = "veinstutorial.src.TutorialAppl"
+*.node[*].appl.dataPriority = 2
+# Mobility Parameters
+*.node[*].veinsmobilityType = "org.car2x.veins.modules.mobility.traci.TraCIMobility"
+*.node[*].veinsmobility.x = 0
+*.node[*].veinsmobility.y = 0
+*.node[*].veinsmobility.z = 0
+
+**.debug = true
+**.coreDebug = true
+```
+The node vector is never initialized in the code we went over, this can be confusing, but it allows an arbitrary amount of Cars in the simulation. The flow in the SUMO configuration files populate the `node[]` vector at runtime.
+
+### Running the VeinsTutorial Example
+
+Assuming that you have Veins and SUMO installed properly, open up the OMNet++ IDE with the `omnetpp` terminal command. You can choose the carlogicapi repo as your workspace or make a folder in your Documents for it. Import Veins and this VeinsTutorial projects in the IDE with *File > Import > General: Existing Projects into Workspace* and select the `carlogicapi/tutorials/VeinsTutorial/` directory for the tutorial. Do the same but Import Veins from its source location.
+Build the VeinsTutorial project with Ctrl-B or *Project > Build All*. Then, you are ready to run the example. Right click on omnetpp.ini in the Project Explorer and *Run As > OMNet++ Simulation*. Click the Run button or press F5 to start the simulation.
