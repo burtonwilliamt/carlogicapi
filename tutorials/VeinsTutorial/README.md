@@ -2,7 +2,7 @@
 
 I've made a simplified example project in order to make it easier to learn Veins, since the example included with Veins doesn't include any documentation and can be hard to understand.
 
-I suggest at least reading through the [Hello-Sumo tutorial](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/Hello-Sumo/tutorial.md) and this [OMNet++ Tic-Toc Example](https://omnetpp.org/doc/omnetpp/tictoc-tutorial/) before doing this one. Once you've done that you should understand how .ned files define the network in the OMNet++ simulation, how simple .ned classes have C++ code behind them, and how to configure a SUMO simulation. This tutorial should help you learn Veins, which connects OMNet++ for network simulation and SUMO for road simulation. Since a lot of the files inherit from files in the Veins project, you can download the Veins source code; check out the [Veins Download](http://veins.car2x.org/download/) to get it. If you want to run it, you'll need to install Veins and its dependencies. See the [Veins Install Guide](http://veins.car2x.org/tutorial/) until we write a better one.
+I suggest at least reading through the [Hello-Sumo tutorial](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/Hello-Sumo/tutorial.md) and this [OMNeT++ Tic-Toc Example](https://omnetpp.org/doc/omnetpp/tictoc-tutorial/) before doing this one. Once you've done that you should understand how .ned files define the network in the OMNeT++ simulation, how simple .ned classes have C++ code behind them, and how to configure a SUMO simulation. This tutorial should help you learn Veins, which connects OMNeT++ for network simulation and SUMO for road simulation. Since a lot of the files inherit from files in the Veins project, you can download the Veins source code; check out the [Veins Download](http://veins.car2x.org/download/) to get it. If you want to run it, you'll need to install Veins and its dependencies. See the [Veins Install Guide](http://veins.car2x.org/tutorial/) until we write a better one.
 
 ### Architecture
 
@@ -11,7 +11,7 @@ TODO: Add a cool class diagram here
 ### TutorialScenario.ned
 
 Firstly, we need to define the network that is going to describe our example. This is described in [src/TutorialSenario.ned](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/VeinsTutorial/src/TutorialScenario.ned) of this project.
-As you can see, this file doesn't do much except `extend Scenario` (inherit from Scenario). Open up Scenario.ned from veins/src/veins/nodes. You might need to open as text / source if you are using the OMNet++ IDE. You'll see this:
+As you can see, this file doesn't do much except `extend Scenario` (inherit from Scenario). Open up Scenario.ned from veins/src/veins/nodes. You might need to open as text / source if you are using the OMNeT++ IDE. You'll see this:
 ```
 package org.car2x.veins.nodes;
 
@@ -111,7 +111,7 @@ This class uses the same syntax for parameters and submodules, but introduces th
 
 ### TraCIMobility
 
-TraCIMobility is the simple class that holds driving-related code. It is in `org.car2x.veins.modules.mobility.traci.TraCIMobility` and has a .ned, .h, and .cc file. The .ned file pretty much only defines some parameters. But the C++ code is the real deal. The `TraCIMobility::changePosition()` function moves the node in the OMNet++ simulation according to the messages from the SUMO sim over TraCI.
+TraCIMobility is the simple class that holds driving-related code. It is in `org.car2x.veins.modules.mobility.traci.TraCIMobility` and has a .ned, .h, and .cc file. The .ned file pretty much only defines some parameters. But the C++ code is the real deal. The `TraCIMobility::changePosition()` function moves the node in the OMNeT++ simulation according to the messages from the SUMO sim over TraCI.
 ```
 void TraCIMobility::changePosition()
 {
