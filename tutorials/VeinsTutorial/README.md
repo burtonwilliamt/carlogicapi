@@ -2,6 +2,8 @@
 
 I've made a simplified example project in order to make it easier to learn Veins, since the example included with Veins doesn't include any documentation and can be hard to understand.
 
+[Veins](http://veins.car2x.org/) is the project that we use to build and run a simulation of communinicating cars. Veins itself is an open source project that connects two open source simulators: OMNeT++ for network traffic, and SUMO for vehicle traffic. Writing a Veins project involves knowledge of all three systems. SUMO provides an API for getting and setting information about the cars in it's simulation, called TraCI. Veins will automaticlly handle the connection to TraCI when we run our project, while running the two simulators in parallel.
+
 I suggest at least reading through the [Hello-Sumo tutorial](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/Hello-Sumo) and this [OMNeT++ Tic-Toc Example](https://omnetpp.org/doc/omnetpp/tictoc-tutorial/) before doing this one. Once you've done that you should understand how .ned files define the network in the OMNeT++ simulation, how simple .ned classes have C++ code behind them, and how to configure a SUMO simulation. This tutorial should help you learn Veins, which connects OMNeT++ for network simulation and SUMO for road simulation. Since a lot of the files inherit from files in the Veins project, you can download the Veins source code; check out the [Veins Download](http://veins.car2x.org/download/) to get it. If you want to run it, you'll need to install Veins and its dependencies. See the [Veins Install Guide](http://veins.car2x.org/tutorial/) until we write a better one.
 
 ### Architecture
@@ -10,8 +12,7 @@ TODO: Add a cool class diagram here
 
 ### TutorialScenario.ned
 
-Firstly, we need to define the network that is going to describe our example. This is described in [src/TutorialSenario.ned](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/VeinsTutorial/src/TutorialScenario.ned) of this project.
-As you can see, this file doesn't do much except `extend Scenario` (inherit from Scenario). Open up Scenario.ned from veins/src/veins/nodes. You might need to open as text / source if you are using the OMNeT++ IDE. You'll see this:
+Firstly, we need to define the network that is going to describe our example. This is described in [src/TutorialSenario.ned](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/VeinsTutorial/src/TutorialScenario.ned) of this project. If you open .ned files in the OMNET++ IDE, you'll probably see a graphical representation  of the network; to see the source code, click the Source tab in the bottom left of the window. As you can see, this file doesn't do much except `extend Scenario` (inherit from Scenario). Open up Scenario.ned from veins/src/veins/nodes. You might need to open as text / source if you are using the OMNeT++ IDE. You'll see this:
 ```
 package org.car2x.veins.nodes;
 
@@ -253,4 +254,5 @@ The node vector is never initialized in the code we went over, this can be confu
 ### Running the VeinsTutorial Example
 
 Assuming that you have Veins and SUMO installed properly, open up the OMNet++ IDE with the `omnetpp` terminal command. You can choose the carlogicapi repo as your workspace or make a folder in your Documents for it. Import Veins and this VeinsTutorial projects in the IDE with *File > Import > General: Existing Projects into Workspace* and select the `carlogicapi/tutorials/VeinsTutorial/` directory for the tutorial. Do the same but Import Veins from its source location.
-Build the VeinsTutorial project with Ctrl-B or *Project > Build All*. Then, you are ready to run the example. Right click on omnetpp.ini in the Project Explorer and *Run As > OMNet++ Simulation*. Click the Run button or press F5 to start the simulation.
+Build the VeinsTutorial project with Ctrl-B or *Project > Build All*. 
+Before we run our project, we need to run a script that will start a parallel SUMO simulation when we start our Veins/OMNeT++ sim. To do this, open a seperate terminal and run: ` ./sumo-launchd.py -vv` from the root of the Veins directory. Then, you are ready to run the example. Right click on omnetpp.ini in the Project Explorer and *Run As > OMNet++ Simulation*. Click the Run button or press F5 to start the simulation.
