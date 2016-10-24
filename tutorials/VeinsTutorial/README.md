@@ -164,7 +164,7 @@ There is also code to record statistics and even some to force an accident! Sinc
 
 ### TutorialAppl
 
-The application part of the Car is in the TutorialAppl class which is comprised of a .ned, a .h, and a .cpp in the src folder included in the VeinsTutorial project [here](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/VeinsTutorial/src/TutorialAppl.cpp). It handles the messages from other Cars, sending and receiving them. In this example, I've made the cars slow down when they receive a message from another car. This is supposed to sync the Car's speeds, and it serves as a simple example. Here is a function that gets called everytime SUMO updates the position of the Car.
+The application part of the Car is in the TutorialAppl class which is comprised of a .ned, a .h, and a .cpp in the src folder included in the VeinsTutorial project [here](https://github.com/burtonwilliamt/carlogicapi/blob/master/tutorials/VeinsTutorial/src/TutorialAppl.cpp). It handles the messages from other Cars, sending and receiving them. In this example, I've made the cars slow down or speed up to the surrounding car's speeds when they receive a message from another car. This is supposed to sync the Car's speeds, and it serves as a simple example. Here is a function that gets called everytime SUMO updates the position of the Car.
 ```
 void TutorialAppl::handlePositionUpdate(cObject* obj) {
     BaseWaveApplLayer::handlePositionUpdate(obj);
@@ -180,15 +180,16 @@ void TutorialAppl::handlePositionUpdate(cObject* obj) {
 And here is the code that matches the speed upon receiving a message:
 ```
 void TutorialAppl::onData(WaveShortMessage* wsm) {
-    //Receive a message with a target speed, slow down to that speed
+    //Receive a message with a target speed, slow down / speed up to that speed
     float message_speed = atof(wsm->getWsmData());
     traciVehicle->slowDown(message_speed, 1000); //slow down over 1s
 }
 ```
+Note that the slowDown method can also speed a car up. It just changes the speed over a given time.
 
 ### omnetpp.ini
 
-The omnetpp.ini file is where all the parameters in .ned files get set. It serves as a configuration file for the Veins simulation. The parameters can be confusing to find because of the inheritance structure and the star expansions. The argument names are dotted off of the variable names, not the classes. And star expansion works in the Unix way. The beginning `*.` before everything is the TutorialScenario object. And `**` is any number of nested `*.`s.
+The omnetpp.ini file is where all the parameters in .ned network files get set. It serves as a configuration file for the Veins simulation, and the file that is Run to start a simulation. The parameters can be confusing to find because of the inheritance structure and the star expansions. Just know that the argument names are dotted off of the variable names, not the classes. And star expansion works in the Unix way. The beginning `*.` before everything is the TutorialScenario object. And `**` is any number of nested `*.`s.
 ```
 [General]
 cmdenv-express-mode = true
@@ -255,4 +256,4 @@ The node vector is never initialized in the code we went over, this can be confu
 
 Assuming that you have Veins and SUMO installed properly, open up the OMNet++ IDE with the `omnetpp` terminal command. You can choose the carlogicapi repo as your workspace or make a folder in your Documents for it. Import Veins and this VeinsTutorial projects in the IDE with *File > Import > General: Existing Projects into Workspace* and select the `carlogicapi/tutorials/VeinsTutorial/` directory for the tutorial. Do the same but Import Veins from its source location.
 Build the VeinsTutorial project with Ctrl-B or *Project > Build All*. 
-Before we run our project, we need to run a script that will start a parallel SUMO simulation when we start our Veins/OMNeT++ sim. To do this, open a seperate terminal and run: ` ./sumo-launchd.py -vv` from the root of the Veins directory. Then, you are ready to run the example. Right click on omnetpp.ini in the Project Explorer and *Run As > OMNet++ Simulation*. Click the Run button or press F5 to start the simulation.
+Before we run our project, we need to run a script that will start a parallel SUMO simulation when we start our Veins/OMNeT++ sim. To do this, open a seperate terminal and run: ` ./sumo-launchd.py -vv` from the root of the Veins directory. Then, you are ready to run the example. Right click on `VeinsTutorial/simulations/omnetpp.ini` in the Project Explorer and *Run As > OMNet++ Simulation*. Click the Run button or press F5 to start the simulation in the window that pops up.
