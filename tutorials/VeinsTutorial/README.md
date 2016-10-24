@@ -257,3 +257,13 @@ The node vector is never initialized in the code we went over, this can be confu
 Assuming that you have Veins and SUMO installed properly, open up the OMNet++ IDE with the `omnetpp` terminal command. You can choose the carlogicapi repo as your workspace or make a folder in your Documents for it. Import Veins and this VeinsTutorial projects in the IDE with *File > Import > General: Existing Projects into Workspace* and select the `carlogicapi/tutorials/VeinsTutorial/` directory for the tutorial. Do the same but Import Veins from its source location.
 Build the VeinsTutorial project with Ctrl-B or *Project > Build All*. 
 Before we run our project, we need to run a script that will start a parallel SUMO simulation when we start our Veins/OMNeT++ sim. To do this, open a seperate terminal and run: ` ./sumo-launchd.py -vv` from the root of the Veins directory. Then, you are ready to run the example. Right click on `VeinsTutorial/simulations/omnetpp.ini` in the Project Explorer and *Run As > OMNet++ Simulation*. Click the Run button or press F5 to start the simulation in the window that pops up.
+
+### Troubleshooting
+
+In our testing, we found that the project can fail to build because of a version mismatch error in the Veins project. We just rebuilt the Veins project by running the Makefile in the Veins src directory, then rebuilt VeinsTutorial to solve this problem.
+
+If you didn't notice that the project didn't build before running it, you'll get this error at runtime:
+```
+Exception occurred executing command line.
+Cannot run program "~/carlogicapi/tutorials/VeinsTutorial/VeinsTutorial" (in directory "~/carlogicapi/tutorials/VeinsTutorial/simulations"): error=2, No such file or directory
+```
