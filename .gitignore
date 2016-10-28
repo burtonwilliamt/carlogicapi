@@ -3,3 +3,5 @@ results/
 out/
 
 **/.tkenvrc
+*.aux
+*.log
