@@ -2,6 +2,11 @@ tutorials/VeinsTutorial/VeinsTutorial
 results/
 out/
 
+#Latex build files
 **/.tkenvrc
 *.aux
 *.log
+
+*.fdb_latexmk
+*.fls
+*.synctex.gz
