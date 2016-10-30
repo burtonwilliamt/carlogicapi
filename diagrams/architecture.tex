@@ -47,14 +47,14 @@
 
 % Car stack
 
-	\node (hardwareSim)[basicblock, below of=sumo] {Hardware Simulation};
+	\node (hardwareSim)[basicblock, below of=sumo] {Hardware simulation};
 
 	\node (agents) [basicblock, below of=hardwareSim] {Agents};
 
 
 % Network stack
 
-	\node(omnetPY)[basicblock, below of=omnet]{Omnet.py interface};
+	\node(omnetPY)[basicblock, below of=omnet]{Omnet interface};
 
 	\node(meshNet)[io, below of=omnetPY]{Mesh Network};
 
@@ -66,7 +66,7 @@
 
 % Controller
 
-	\node(loopStatement)[startstop, left of=agents, xshift=-2cm]{Continously loop and run each agent\, step simulation};
+	\node(loopStatement)[startstop, left of=agents, xshift=-2cm]{Loop control};
 
 
 
@@ -118,10 +118,30 @@
 	\end{tikzpicture}
 
 	\begin{enumerate}
-		\item Launchd: Describe here
-		\item Sumo: Describe here
-		\item Omnet: Describe here
-		\item Hardware Simulation: Describe here
-		\item Omnet.py: Describe here
+		\item Launchd: The first thing to run. This will be a python script
+			that opens up the sumo simulation, opens omnet simulation, connects them
+			with veins, and then launches the loop controller.
+		\item Sumo: A sumo road simulation. See tutorials for more.
+		\item Omnet: A omnet network simulation. See tutorials for more.
+		\item Hardware simulation: This code will interpret the "World" view that
+			sumo gives, and will return what is visible from any one car. Will emulate
+			the Autonomous driver component of the final implementation, gives abstact
+			information, not "raw". Also accepts abstract requests, such as "Switch lanes",
+			just as the Autonomous Driver Would.
+		\item Omnet interace: Abstract out the omnet specific commands
+		\item Mesh network: Control connections and message handeling. Generally
+			handles all of the mesh network specific work.
+		\item Car Logic API: a standard set of methods that the agent can interact
+			with to join and contribute to the swarm of cars on the road.
+		\item Agents: A swappable module, each representing a different manufacturer
+			implementation of the Car Logic API, showing that different designs can
+			all work using the API. The agent will 1) request information from the
+			hardware simulation 2) get any new messages from the car logic api 3) decide
+			what it wants to do 4) broadcast any relevant information to other cars
+			5) request specific manuvers from the hardware simulation.
+		\item Loop Control: This will orchistrate the whole simulation. It will go
+			through each of the individual agents, each one tied to a specific car,
+			and allow that agent to do one full loop of operations. Once all agents
+			have completed an iteration, this will step both the sumo and omnet sims.
 	\end{enumerate}
 \end{document}
