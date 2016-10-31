@@ -14,7 +14,7 @@ import subprocess
 PORT = 8813
 sumoBinary = checkBinary('sumo-gui')
 print sumoBinary
-sumoProcess = subprocess.Popen([sumoBinary, "-c", "hello.sumo.cfg", "--remote-port", str(PORT)], stdout=sys.stdout, stderr=sys.stderr)
+sumoProcess = subprocess.Popen([sumoBinary, "-c", "alpha.sumo.cfg", "--remote-port", str(PORT)], stdout=sys.stdout, stderr=sys.stderr)
 
 import traci
 traci.init(PORT)
