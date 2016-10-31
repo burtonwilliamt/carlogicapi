@@ -64,17 +64,9 @@
 	\node (carLogicAPI)[io, below of=agents, xshift=3cm]{Car Logic API};
 
 
-% Controller
-
-	\node(loopStatement)[startstop, left of=agents, xshift=-2cm]{Loop control};
-
-
-
-
 
 
 % Launchd statement arrows
-	\draw [arrow] (launchd.170) -| (loopStatement);
 
 	\draw [arrow] (launchd) -| node[ anchor=east, yshift=-1cm]{Open Sumo} (sumo);
 	\draw [arrow] (launchd) -| node [anchor=west, yshift=-1cm]{Open Omnet}(omnet);
@@ -95,8 +87,8 @@
 
 
 % Hardware Stack
-	\draw [arrow] (sumo.250) -- (hardwareSim.110);
-	\draw [arrow] (hardwareSim.70) -- (sumo.290);
+	\draw [arrow] (omnetPY.190) -- (hardwareSim.350);
+	\draw [arrow] (hardwareSim.10) -- (omnetPY.170);
 
 	\draw [arrow] (hardwareSim.250) -- (agents.110);
 	\draw [arrow] (agents.70) -- (hardwareSim.290);
@@ -108,11 +100,6 @@
 
 	\draw [arrow] (agents.290) |- (carLogicAPI.170);
 	\draw [arrow] (carLogicAPI.190) -| (agents.250);
-
-
-% Loop of all agents, sumulation control
-	\draw [arrow] (agents.170) -- (loopStatement.10);
-	\draw [arrow] (loopStatement.350) -- (agents.190);
 
 
 	\end{tikzpicture}
@@ -139,9 +126,5 @@
 			hardware simulation 2) get any new messages from the car logic api 3) decide
 			what it wants to do 4) broadcast any relevant information to other cars
 			5) request specific manuvers from the hardware simulation.
-		\item Loop Control: This will orchistrate the whole simulation. It will go
-			through each of the individual agents, each one tied to a specific car,
-			and allow that agent to do one full loop of operations. Once all agents
-			have completed an iteration, this will step both the sumo and omnet sims.
 	\end{enumerate}
 \end{document}
