@@ -1,3 +1,6 @@
+
+#binaries
+alpha/alpha
 tutorials/VeinsTutorial/VeinsTutorial
 results/
 out/
@@ -12,5 +15,6 @@ out/
 *.synctex.gz
 
 #Makefiles
+alpha/Makefile
 alpha/src/Makefile
 tutorials/VeinsTutorial/Makefile

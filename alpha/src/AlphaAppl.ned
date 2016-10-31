@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package alpha;
+package alpha.src;
 import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
 simple AlphaAppl extends BaseWaveApplLayer

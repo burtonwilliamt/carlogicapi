@@ -1,3 +1,3 @@
-package alpha;
+package alpha.src;
 
 @license(LGPL);

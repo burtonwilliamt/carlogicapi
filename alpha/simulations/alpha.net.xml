@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on Sun Sep 25 15:48:52 2016 by SUMO netconvert Version 0.25.0
+<!-- generated on Mon Oct 31 11:56:05 2016 by SUMO netconvert Version 0.25.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <node-files value="hello.nod.xml"/>
-        <edge-files value="hello.edg.xml"/>
+        <node-files value="alpha.nod.xml"/>
+        <edge-files value="alpha.edg.xml"/>
     </input>
 
     <output>
-        <output-file value="hello.net.xml"/>
+        <output-file value="alph.net.xml"/>
     </output>
 
 </configuration>
