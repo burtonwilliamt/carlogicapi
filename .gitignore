@@ -10,3 +10,7 @@ out/
 *.fdb_latexmk
 *.fls
 *.synctex.gz
+
+#Makefiles
+alpha/src/Makefile
+tutorials/VeinsTutorial/Makefile
