@@ -13,11 +13,11 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package veinstutorial.src;
+package alpha;
 
 import org.car2x.veins.nodes.Scenario;
 
-network TutorialScenario extends Scenario
+network AlphaScenario extends Scenario
 {
 	//inherited from Scenario
 	connections allowunconnected:

@@ -1,12 +1,12 @@
 /*
- * TutorialAppl.h
+ * AlphaAppl.h
  *
  *  Created on: Oct 10, 2016
  *      Author: greg
  */
 
-#ifndef TUTORIALAPPL_H_
-#define TUTORIALAPPL_H_
+#ifndef ALPHAAPPL_H_
+#define ALPHAAPPL_H_
 
 #include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
 #include "veins/modules/mobility/traci/TraCIMobility.h"
@@ -16,7 +16,7 @@ using Veins::TraCIMobility;
 using Veins::TraCICommandInterface;
 //using Veins::AnnotationManager; //add for annotations
 
-class TutorialAppl : public BaseWaveApplLayer {
+class AlphaAppl : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details);
@@ -33,4 +33,4 @@ class TutorialAppl : public BaseWaveApplLayer {
         virtual void sendWSM(WaveShortMessage* wsm);
 };
 
-#endif /* TUTORIALAPPL_H_ */
+#endif

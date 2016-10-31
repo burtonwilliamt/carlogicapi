@@ -13,11 +13,11 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package veinstutorial.src;
+package alpha;
 import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
-simple TutorialAppl extends BaseWaveApplLayer
+simple AlphaAppl extends BaseWaveApplLayer
 {
 	//declarations go here
-	@class(TutorialAppl);
+	@class(AlphaAppl);
 }

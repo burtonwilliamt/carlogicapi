@@ -29,7 +29,7 @@ PROJECTRELATIVE_PATH = src
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cpp and .msg files
-OBJS = $O/TutorialAppl.o
+OBJS = $O/AlphaAppl.o
 
 # Message files
 MSGFILES =
@@ -118,8 +118,8 @@ depend:
 	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cpp
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
-$O/TutorialAppl.o: TutorialAppl.cpp \
-	TutorialAppl.h \
+$O/AlphaAppl.o: AlphaAppl.cpp \
+	AlphaAppl.h \
 	$(VEINS_PROJ)/src/veins/base/connectionManager/BaseConnectionManager.h \
 	$(VEINS_PROJ)/src/veins/base/connectionManager/ChannelAccess.h \
 	$(VEINS_PROJ)/src/veins/base/connectionManager/NicEntry.h \
