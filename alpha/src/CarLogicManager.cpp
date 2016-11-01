@@ -15,6 +15,8 @@
 
 #include <CarLogicManager.h>
 
+Define_Module(CarLogicManager);
+
 CarLogicManager::CarLogicManager() {
     // TODO Auto-generated constructor stub
 
