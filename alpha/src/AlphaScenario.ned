@@ -16,9 +16,16 @@
 package alpha.src;
 
 import org.car2x.veins.nodes.Scenario;
+import alpha.src.CarLogicManager;
 
 network AlphaScenario extends Scenario
 {
-	//inherited from Scenario
+    submodules:
+        //others inherited from Scenario
+        carlogicmanager : CarLogicManager {
+            //parameters:
+                //defaults are good
+        }
+        
 	connections allowunconnected:
 }
