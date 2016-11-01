@@ -10,11 +10,11 @@ except ImportError:
     sys.exit(
         "please declare environment variable 'SUMO_HOME' as the root directory of your sumo installation (it should contain folders 'bin', 'tools' and 'docs')")
 
-import subprocess
+#import subprocess
 PORT = 8813
 sumoBinary = checkBinary('sumo-gui')
-print sumoBinary
-sumoProcess = subprocess.Popen([sumoBinary, "-c", "alpha.sumo.cfg", "--remote-port", str(PORT)], stdout=sys.stdout, stderr=sys.stderr)
+#print sumoBinary
+#sumoProcess = subprocess.Popen([sumoBinary, "-c", "alpha.sumo.cfg", "--remote-port", str(PORT)], stdout=sys.stdout, stderr=sys.stderr)
 
 import traci
 traci.init(PORT)

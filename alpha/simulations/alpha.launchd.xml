@@ -2,6 +2,7 @@
 <launch>
 	<copy file="alpha.net.xml" />
 	<copy file="alpha.rou.xml" />
+	<copy file="alpha.settings.xml" />
 	<!-- <copy file="tutorial.poly.xml" /> -->
 	<copy file="alpha.sumo.cfg" type="config" />
 </launch>
