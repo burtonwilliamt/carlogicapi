@@ -40,6 +40,8 @@ while step < 1000:
         carInFront = "none"
         if(idInLane > 1):
             carInFront = '{}{}{}'.format(laneId, "_", (idInLane-1))
+        if not carInFront in idList:
+            carInFront = "none"
 
         pos = traci.vehicle.getPosition(veh)
         ang = traci.vehicle.getAngle(veh)
