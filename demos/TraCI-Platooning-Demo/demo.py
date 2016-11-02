@@ -37,9 +37,9 @@ while step < 1000:
         # print("ID: " + laneIdStr)
         typeID = traci.vehicle.getTypeID(veh)
 
-        # carInFront = "none"
-        # if(idInLane > 1):
-        #     carInFront = laneId+"_"+idInLane-1
+        carInFront = "none"
+        if(idInLane > 1):
+            carInFront = '{}{}{}'.format(laneId, "_", (idInLane-1))
 
         pos = traci.vehicle.getPosition(veh)
         ang = traci.vehicle.getAngle(veh)
@@ -53,6 +53,8 @@ while step < 1000:
         traci.vehicle.setLaneChangeMode(veh, 0)
         # if(laneId == 2):
 
+        if(step >= 200 and carInFront != "none" and laneId == 2 and traci.vehicle.getTypeID(carInFront) == typeID):
+            traci.vehicle.slowDown(veh, traci.vehicle.getSpeed(carInFront), 100)
 
         if(veh.endswith("roadBlock")):
             if(step == 20):

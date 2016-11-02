@@ -20,30 +20,30 @@
 
   <vehicle depart="30" departLane="0" id="0_2" route="route0" type="Human" />
   <vehicle depart="30" departLane="1" id="1_2" route="route0" type="Tesla" />
-  <vehicle depart="30" departLane="2" id="2_2" route="route0" type="Tesla" />
+  <vehicle depart="30" departLane="2" id="2_2" route="route0" type="BMW" />
 
 
   <vehicle depart="40" departLane="0" id="0_3" route="route0" type="Human" />
   <vehicle depart="40" departLane="1" id="1_3" route="route0" type="Tesla" />
-  <vehicle depart="40" departLane="2" id="2_3" route="route0" type="Audi" />
+  <vehicle depart="40" departLane="2" id="2_3" route="route0" type="BMW" />
 
 
   <vehicle depart="50" departLane="0" id="0_4" route="route0" type="Human" />
   <vehicle depart="50" departLane="1" id="1_4" route="route0" type="Tesla" />
-  <vehicle depart="50" departLane="2" id="2_4" route="route0" type="Volvo" />
+  <vehicle depart="50" departLane="2" id="2_4" route="route0" type="Audi" />
 
 
   <vehicle depart="60" departLane="0" id="0_5" route="route0" type="Human" />
   <vehicle depart="60" departLane="1" id="1_5" route="route0" type="Tesla" />
-  <vehicle depart="60" departLane="2" id="2_5" route="route0" type="BMW" />
+  <vehicle depart="60" departLane="2" id="2_5" route="route0" type="Audi" />
 
   <vehicle depart="70" departLane="0" id="0_6" route="route0" type="Human" />
   <vehicle depart="70" departLane="1" id="1_6" route="route0" type="Tesla" />
-  <vehicle depart="70" departLane="2" id="2_6" route="route0" type="Tesla" />
+  <vehicle depart="70" departLane="2" id="2_6" route="route0" type="Volvo" />
 
   <vehicle depart="80" departLane="0" id="0_7" route="route0" type="Human" />
   <vehicle depart="80" departLane="1" id="1_7" route="route0" type="Tesla" />
-  <vehicle depart="80" departLane="2" id="2_7" route="route0" type="Audi" />
+  <vehicle depart="80" departLane="2" id="2_7" route="route0" type="Volvo" />
 
   <vehicle depart="90" departLane="0" id="0_8" route="route0" type="Human" />
   <vehicle depart="90" departLane="1" id="1_8" route="route0" type="Tesla" />
