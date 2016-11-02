@@ -15,6 +15,8 @@
 
 #include "CarLogicManager.h"
 
+using namespace omnetpp;
+
 Define_Module(CarLogicManager);
 
 CarLogicManager::CarLogicManager() {
@@ -41,4 +43,20 @@ void CarLogicManager::initialize(int stage) {
     int initPacketLength = strlen(initPacket);
     socket.send(initPacket, initPacketLength);
 
+}
+
+void CarLogicManager::handleMessage(cMessage *msg) {
+    if (msg->isSelfMessage()) {
+        handleSelfMsg(msg);
+        return;
+    }
+    error("CarLogicManager doesn't handle messages from other modules");
+}
+
+void CarLogicManager::handleSelfMsg(cMessage *msg) {
+    error("CarLogicManager received unknown self-message");
+}
+
+void CarLogicManager::finish() {
+    //nothing yet
 }

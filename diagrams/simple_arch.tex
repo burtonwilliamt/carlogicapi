@@ -1,0 +1,81 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{pgfplots}
+\usetikzlibrary{automata,positioning}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\setlength{\topmargin}{-1.5in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{.125in}
+\setlength{\textwidth}{6.25in}
+
+\tikzset{
+    *|/.style={
+        to path={
+            (perpendicular cs: horizontal line through={(\tikztostart)},
+                                 vertical line through={(\tikztotarget)})
+            % is the same as (\tikztostart -| \tikztotarget)
+            % but just to be safe: http://tex.stackexchange.com/a/29781/16595
+            -- (\tikztotarget) \tikztonodes
+        }
+    }
+}
+
+\tikzstyle{basic} = [rectangle, minimum width=3cm, minimum height=1cm,text centered, text width=3cm, draw=black, fill=blue!30]
+\tikzstyle{long} = [rectangle, minimum width=8.0cm, minimum height=1cm, text centered, text width=8.0cm, draw=black, fill=green!30]
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{document}
+	\title{
+		\textbf{Car Logic Architecture}
+	}
+	\date{}
+	\maketitle
+
+
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm]
+
+	\node (sumo) [basic] {SUMO};
+	\node (omnetpp) [basic, right of=sumo, xshift=2.5cm] {OMNeT++};
+	\node (scripts) [long, below of=sumo, xshift=2.5cm] {\textbf{Our Scripts:}\\Self-Driving\\Mesh Network\\Car Logic API};
+
+	\draw [arrow] (sumo.south) -- (scripts.north -| sumo.south);
+	\draw [arrow] (scripts.north -| sumo.south) -- (sumo.south);
+	\draw [arrow] (omnetpp.south) -- (scripts.north -| omnetpp.south);
+	\draw [arrow] (scripts.north -| omnetpp.south) -- (omnetpp.south);
+	\draw [arrow] (sumo) -- (omnetpp);
+	\draw [arrow] (omnetpp) -- (sumo);
+
+\end{tikzpicture}
+\end{center}
+
+	\begin{enumerate}
+		\item Launchd: The first thing to run. This will be a python script
+			that opens up the sumo simulation, opens omnet simulation, connects them
+			with veins, and then launches the loop controller.
+		\item Sumo: A sumo road simulation. See tutorials for more.
+		\item Omnet: A omnet network simulation. See tutorials for more.
+		\item Hardware simulation: This code will interpret the "World" view that
+			sumo gives, and will return what is visible from any one car. Will emulate
+			the Autonomous driver component of the final implementation, gives abstact
+			information, not "raw". Also accepts abstract requests, such as "Switch lanes",
+			just as the Autonomous Driver Would.
+		\item Omnet interace: Abstract out the omnet specific commands
+		\item Mesh network: Control connections and message handeling. Generally
+			handles all of the mesh network specific work.
+		\item Car Logic API: a standard set of methods that the agent can interact
+			with to join and contribute to the swarm of cars on the road.
+		\item Agents: A swappable module, each representing a different manufacturer
+			implementation of the Car Logic API, showing that different designs can
+			all work using the API. The agent will 1) request information from the
+			hardware simulation 2) get any new messages from the car logic api 3) decide
+			what it wants to do 4) broadcast any relevant information to other cars
+			5) request specific manuvers from the hardware simulation.
+	\end{enumerate}
+\end{document}
