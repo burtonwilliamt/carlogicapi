@@ -22,7 +22,7 @@ network AlphaScenario extends Scenario
 {
     submodules:
         //others inherited from Scenario
-        carlogicmanager : CarLogicManager {
+        carlogicmanager : alpha.src.CarLogicManager {
             //parameters:
                 //defaults are good
         }

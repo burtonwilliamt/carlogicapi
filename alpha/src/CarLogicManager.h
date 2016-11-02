@@ -17,12 +17,19 @@
 #define CARLOGICMANAGER_H_
 
 #include "PracticalSocket.h"
+#include <omnetpp.h>
+
+using namespace omnetpp;
 
 class CarLogicManager : public cSimpleModule {
 public:
     CarLogicManager();
     virtual ~CarLogicManager();
     virtual void initialize(int stage);
+    virtual int numInitStages() const { return std::max(cSimpleModule::numInitStages(), 2); }
+    virtual void finish();
+    virtual void handleMessage(cMessage *msg);
+    virtual void handleSelfMsg(cMessage *msg);
 
 protected:
     string hostname;
