@@ -39,7 +39,9 @@ while step < 1000:
 
         carInFront = "none"
         if(idInLane > 1):
-            carInFront = '{}{}{}'.format(laneId, "_", (idInLane-1))
+            carInFront = '{}_{}'.format(laneId, (idInLane-1))
+        elif(idInLane == 1):
+            carInFront = '{}_roadBlock'.format(laneId)
         if not carInFront in idList:
             carInFront = "none"
 
@@ -54,9 +56,9 @@ while step < 1000:
 
         traci.vehicle.setLaneChangeMode(veh, 0)
         # if(laneId == 2):
-
-        if(step >= 200 and carInFront != "none" and laneId == 2 and traci.vehicle.getTypeID(carInFront) == typeID):
-            traci.vehicle.slowDown(veh, traci.vehicle.getSpeed(carInFront), 100)
+        if(step >= 200 and carInFront != "none"):
+            if(laneId == 3 or (laneId == 2 and traci.vehicle.getTypeID(carInFront) == typeID)):
+                traci.vehicle.slowDown(veh, traci.vehicle.getSpeed(carInFront), 100)
 
         if(veh.endswith("roadBlock")):
             if(step == 20):
