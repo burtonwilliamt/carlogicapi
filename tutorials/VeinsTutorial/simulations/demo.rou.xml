@@ -58,17 +58,4 @@
   <vehicle depart="90" departLane="2" id="2_8" route="route0" type="Volvo" />
   <vehicle depart="90" departLane="3" id="3_8" route="route0" type="Volvo" />
 
-
-
-
-  <!-- <vehicle depart="10" departLane="1" id="lane1_roadBlock" route="route0" type="Human" />
-  <vehicle depart="10" departLane="2" id="lane2_roadBlock" route="route0" type="Human" /> -->
-
-
-<!--
-  <vehicle depart="10" id="veh1" route="route0" type="BMW" />
-  <vehicle depart="15" id="veh2" route="route0" type="Tesla" />
-  <vehicle depart="20" id="veh3" route="route0" type="BMW" />
-  <vehicle depart="25" id="veh4" route="route0" type="BMW" />
-  <vehicle depart="30" departLane="1" id="veh5" route="route0" type="Tesla" /> -->
 </routes>

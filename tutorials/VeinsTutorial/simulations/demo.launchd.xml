@@ -3,6 +3,5 @@
 	<copy file="demo.net.xml" />
 	<copy file="demo.rou.xml" />
 	<copy file="demo.settings.xml" />
-	<!-- <copy file="tutorial.poly.xml" /> -->
 	<copy file="demo.sumo.cfg" type="config" />
 </launch>
