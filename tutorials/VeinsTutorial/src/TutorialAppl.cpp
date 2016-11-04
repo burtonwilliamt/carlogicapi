@@ -15,6 +15,7 @@ void TutorialAppl::initialize(int stage) {
         traci = mobility->getCommandInterface();
         traciVehicle = mobility->getVehicleCommandInterface();
         lastSent = simTime();
+        traciVehicle->setLaneChangeMode(0);
     }
 }
 
