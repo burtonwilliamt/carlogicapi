@@ -9,6 +9,12 @@ The project we are proposing includes developing prototype communication standar
 ## Audience
 Traffic engineers and car manufacturers are the main audience for this project. Traffic engineers will be interested in the potential traffic efficiency gains of the project. The project will work best when it is fully integrated into cars, this requires the cooperation of the car manufacturers. They could market the technology as a safety and efficiency feature. Ultimately, as cars become smarter and computers are more tightly integrated with the driving experience, solutions like this will optimize and improve driving for all people who own such a car.
 
+## Installation
+During our project, we have documented our installation processes for [Windows](https://github.com/burtonwilliamt/carlogicapi/wiki/Windows-10-Installation), [Mac](), and [Linux](https://github.com/burtonwilliamt/carlogicapi/wiki/Linux-Installation). Click on those links to get to our installation processes, then be sure to head over to the [wiki](https://github.com/burtonwilliamt/carlogicapi/wiki) and check out our tutorials.
+
+## Documentation
+We've spent a significant amount of time documenting what we've learned and how our project is structured over on our [wiki](https://github.com/burtonwilliamt/carlogicapi/wiki). Head over there to read about what we've done, and our struggles.
+
 ## Proposed Timeline
 The goal to achieve by the end of the semester is a working demo of two or more simulated “smart cars” communicating to improve safety and efficiency.
 
