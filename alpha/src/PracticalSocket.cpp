@@ -18,6 +18,8 @@
  */
 
 #include "PracticalSocket.h"
+#include <stdio.h>
+#include <cstring>
 
 #ifdef WIN32
   #include <winsock.h>         // For socket(), connect(), send(), and recv()

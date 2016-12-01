@@ -15,8 +15,6 @@
 
 #include "CarLogicManager.h"
 
-using namespace omnetpp;
-
 Define_Module(CarLogicManager);
 
 CarLogicManager::CarLogicManager() {
@@ -34,14 +32,15 @@ void CarLogicManager::initialize(int stage) {
         return;
     }
 
-    hostname = par("hostname");
+    hostname = par("host").stringValue();
     port = par("port");
 
-    socket = TCPSocket(hostname, port);
+    TCPSocket soc(hostname, port);
+    socket = &soc;
 
     char initPacket[64] = "Hello";
     int initPacketLength = strlen(initPacket);
-    socket.send(initPacket, initPacketLength);
+    socket->send(initPacket, initPacketLength);
 
 }
 

@@ -18,24 +18,22 @@
 
 #include "PracticalSocket.h"
 #include <omnetpp.h>
-
-using namespace omnetpp;
+//using namespace omnetpp;
 
 class CarLogicManager : public cSimpleModule {
 public:
     CarLogicManager();
-    virtual ~CarLogicManager();
-    virtual void initialize(int stage);
-    virtual int numInitStages() const { return std::max(cSimpleModule::numInitStages(), 2); }
-    virtual void finish();
-    virtual void handleMessage(cMessage *msg);
-    virtual void handleSelfMsg(cMessage *msg);
+    ~CarLogicManager();
+    void initialize(int stage);
+    int numInitStages() const { return std::max(cSimpleModule::numInitStages(), 2); }
+    void finish();
+    void handleMessage(cMessage *msg);
+    void handleSelfMsg(cMessage *msg);
 
 protected:
     string hostname;
-    int port;
-
-    TCPSocket socket;
+    unsigned short port;
+    TCPSocket* socket;
 };
 
 #endif /* CARLOGICMANAGER_H_ */

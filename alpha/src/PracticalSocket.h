@@ -120,8 +120,8 @@ public:
   static unsigned short resolveService(const string &service,
                                        const string &protocol = "tcp");
 
-  void operator=(const Socket &sock);
 private:
+  void operator=(const Socket &sock);
   // Prevent the user from trying to use value semantics on this object
   Socket(const Socket &sock);
 
