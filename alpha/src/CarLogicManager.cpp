@@ -32,7 +32,7 @@ void CarLogicManager::initialize(int stage) {
         return;
     }
 
-    hostname = par("host").stringValue();
+    hostname = par("hostname").stringValue();
     port = par("port");
 
     TCPSocket soc(hostname, port);
