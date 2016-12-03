@@ -19,6 +19,8 @@
 #include "PracticalSocket.h"
 #include <omnetpp.h>
 #include "Send_m.h"
+#include <unordered_map>
+#include "AlphaAppl.h"
 
 using namespace omnetpp;
 
@@ -29,6 +31,7 @@ public:
     void initialize(int stage);
     void finish();
     void handleMessage(cMessage *msg);
+    void addVehicle(AlphaAppl* veh);
 
 protected:
     string hostname;
@@ -37,6 +40,11 @@ protected:
     TCPSocket* socket;
     cMessage* executeOneTimestepTrigger;
 
+    int vehicleCounter;
+    std::unordered_map<int, AlphaAppl*> vehiclePointers;
+
+    void handleCommands(char* data);
+    string speedRequest(char* data);
     void handleSelfMsg(cMessage *msg);
     void executeOneTimestep();
     void sendToPython(Send* msg);

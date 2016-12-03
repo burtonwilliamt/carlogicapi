@@ -17,8 +17,20 @@
 
 Define_Module(CarLogicManager);
 
+
+//static values to be used by the manager
+static unsigned int buffer_len = 1024;
+static std::unordered_map<string, int> TraCIcommands({
+    {"Receive", 100},
+    {"Send", 200},
+    {"GetSpeed", 301},
+    {"GetLane", 302}
+});
+
+
+
 CarLogicManager::CarLogicManager() {
-    // TODO Auto-generated constructor stub
+    vehicleCounter = 0;
 
 }
 
@@ -69,28 +81,66 @@ void CarLogicManager::handleSelfMsg(cMessage *msg) {
         error("CarLogicManager received unknown self-message");
 }
 
-void CarLogicManager::executeOneTimestep() {
-    //send
+string CarLogicManager::speedRequest(char* data){
+   string returnData;
+   returnData[0] = TraCIcommands["GetSpeed"];
+   returnData[1] = 1;
+   return returnData;
+}
+
+
+// return the char* value answer of a command request
+void CarLogicManager::handleCommands(char* data){
+    int command = (int)data[0];
+    string returnData;
+    if(command == TraCIcommands["GetSpeed"]){
+        returnData = speedRequest(data);
+    }
+
+
+
     try {
-        char initPacket[] = "Hello";
+        char initPacket[returnData.size()];
+        for(int i = 0; i < returnData.size(); ++i){
+            initPacket[i] = returnData[i];
+        }
         int initPacketLength = strlen(initPacket);
         socket->send(initPacket, initPacketLength);
     } catch (SocketException &e) {
         //nothing
     }
+}
+
+void CarLogicManager::executeOneTimestep() {
+//    //send
+//    try {
+//        string data;
+//        data += (char)TraCIcommands["GetSpeed"];
+//        data += (char)0;
+//        char initPacket[] = data.c_str();
+//        int initPacketLength = strlen(initPacket);
+//        socket->send(initPacket, initPacketLength);
+//    } catch (SocketException &e) {
+//        //nothing
+//    }
     //receive
-    unsigned int buffer_len = 1024;
     char buffer[buffer_len+1];
     int bytesReceived;
     if ((bytesReceived = (socket->recv(buffer, buffer_len))) <= 0) return;
     buffer[bytesReceived] = '\0';
     printf("buffer:%s\n", buffer);
+    handleCommands(buffer);
 }
 
 void CarLogicManager::sendToPython(Send *msg) {
     const char *buffer = msg->getData();
     unsigned int buffer_len = strlen(buffer);
     socket->send(buffer, buffer_len);
+}
+
+void CarLogicManager::addVehicle(AlphaAppl* veh){
+    vehiclePointers.insert(std::make_pair(vehicleCounter, veh));
+    vehicleCounter++;
 }
 
 void CarLogicManager::finish() {
