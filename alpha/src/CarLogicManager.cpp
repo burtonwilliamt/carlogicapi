@@ -28,33 +28,26 @@ CarLogicManager::~CarLogicManager() {
 
 void CarLogicManager::initialize(int stage) {
     cSimpleModule::initialize(stage);
-    if (stage != 1){
-        return;
-    }
 
     hostname = par("hostname").stringValue();
     port = par("port");
 
     try {
-        TCPSocket soc(hostname, port);
+        static TCPSocket soc(hostname, port);
         socket = &soc;
     }
     catch(SocketException &e) {
-        throw cRuntimeError("FUCK");
-        printf("RAWWWWW!");
         cerr << e.what() << endl;
         exit(1);
     }
 
-    socket->connect(hostname, port);
-
-    char initPacket[] = "Hello";
+    char initPacket[] = "Init";
     int initPacketLength = strlen(initPacket);
     socket->send(initPacket, initPacketLength);
 
     updateInterval = par("updateInterval");
-    executeOneTimestepTrigger = new cMessage("step");
-    scheduleAt(updateInterval, executeOneTimestepTrigger);
+    executeOneTimestepTrigger = new cMessage("stepManager");
+    scheduleAt(0.1, executeOneTimestepTrigger);
 
 }
 
@@ -77,13 +70,22 @@ void CarLogicManager::handleSelfMsg(cMessage *msg) {
 }
 
 void CarLogicManager::executeOneTimestep() {
+    //send
+    try {
+        char initPacket[] = "Hello";
+        int initPacketLength = strlen(initPacket);
+        socket->send(initPacket, initPacketLength);
+    } catch (SocketException &e) {
+        //nothing
+    }
+    //receive
     unsigned int buffer_len = 1024;
     char buffer[buffer_len+1];
     int bytesReceived;
     if ((bytesReceived = (socket->recv(buffer, buffer_len))) <= 0) return;
     if (buffer == NULL) return;
     buffer[bytesReceived] = '\0';
-    printf("buffer:\n%s", buffer);
+    printf("buffer:%s\n", buffer);
 }
 
 void CarLogicManager::send(Send *msg) {
@@ -94,4 +96,5 @@ void CarLogicManager::send(Send *msg) {
 
 void CarLogicManager::finish() {
     //nothing yet
+    socket->cleanUp();
 }

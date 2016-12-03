@@ -8,8 +8,11 @@ class Manager(protocol.Protocol):
 
     def dataReceived(self, data):
         print("Received: {}".format(data))
-        #self.transport.write(data)
+        # Echo
+        self.transport.write(data)
 
+    def connectionLost(self, reason):
+        print("Connection lost for reason: {}".format(reason))
 
 def main():
     factory = protocol.ServerFactory()
