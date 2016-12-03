@@ -20,4 +20,5 @@ simple CarLogicManager
     @class(CarLogicManager);
 	string hostname = default("localhost");
 	int port = default(9998);
+	double updateInterval @unit("s") = default(1s);
 }

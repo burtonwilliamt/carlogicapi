@@ -42,6 +42,10 @@ void CarLogicManager::initialize(int stage) {
     int initPacketLength = strlen(initPacket);
     socket->send(initPacket, initPacketLength);
 
+    updateInterval = par("updateInterval");
+    executeOneTimestepTrigger = new cMessage("step");
+    scheduleAt(updateInterval, executeOneTimestepTrigger);
+
 }
 
 void CarLogicManager::handleMessage(cMessage *msg) {
@@ -53,7 +57,20 @@ void CarLogicManager::handleMessage(cMessage *msg) {
 }
 
 void CarLogicManager::handleSelfMsg(cMessage *msg) {
-    error("CarLogicManager received unknown self-message");
+    if (msg == executeOneTimestepTrigger) {
+        executeOneTimestep();
+        scheduleAt(simTime()+updateInterval, executeOneTimestepTrigger);
+    }
+    else
+        error("CarLogicManager received unknown self-message");
+}
+
+void CarLogicManager::executeOneTimestep() {
+    unsigned int buffer_len = 1024;
+    char buffer[buffer_len];
+    socket->recv(buffer, buffer_len);
+    if (buffer == NULL) return;
+    printf("buffer:\n%s", buffer);
 }
 
 void CarLogicManager::finish() {

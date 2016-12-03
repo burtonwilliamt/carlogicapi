@@ -33,7 +33,11 @@ public:
 protected:
     string hostname;
     unsigned short port;
+    simtime_t updateInterval;
     TCPSocket* socket;
+    cMessage* executeOneTimestepTrigger;
+
+    void executeOneTimestep();
 };
 
 #endif /* CARLOGICMANAGER_H_ */
