@@ -169,7 +169,7 @@ unsigned short Socket::resolveService(const string &service,
   struct servent *serv;        /* Structure containing service information */
 
   if ((serv = getservbyname(service.c_str(), protocol.c_str())) == NULL)
-    return atoi(service.c_str());  /* Service is port number */
+    return stoi(service.c_str());  /* Service is port number */
   else 
     return ntohs(serv->s_port);    /* Found port (network byte order) by name */
 }

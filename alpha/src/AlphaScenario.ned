@@ -23,8 +23,9 @@ network AlphaScenario extends Scenario
     submodules:
         //others inherited from Scenario
         carlogicmanager : alpha.src.CarLogicManager {
-            //parameters:
-                //defaults are good
+            parameters:
+                hostname;
+                port;
         }
         
 	connections allowunconnected:

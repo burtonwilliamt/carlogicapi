@@ -18,7 +18,7 @@
 
 #include "PracticalSocket.h"
 #include <omnetpp.h>
-//using namespace omnetpp;
+using namespace omnetpp;
 
 class CarLogicManager : public cSimpleModule {
 public:
