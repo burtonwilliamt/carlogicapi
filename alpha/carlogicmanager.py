@@ -1,20 +1,21 @@
-import socketserver
+from twisted.internet import reactor, protocol
 
 
-class MyTCPHandler(socketserver.StreamRequestHandler):
+class Manager(protocol.Protocol):
 
-    def handle(self):
-        self.data = self.rfile.readline().strip()
-        
-        print("{} wrote:".format(self.client_address[0]))
-        print(self.data)
+    def connectionMade(self):
+        print("Connected to client!")
 
-        self.wfile.write(self.data.upper())
+    def dataReceived(self, data):
+        print("Received: {}".format(data))
+        #self.transport.write(data)
 
 
-if __name__ == "__main__":
-    HOST, PORT = "localhost", 9999
+def main():
+    factory = protocol.ServerFactory()
+    factory.protocol = Manager
+    reactor.listenTCP(9998,factory)
+    reactor.run()
 
-    server = socketserver.TCPServer((HOST, PORT), MyTCPHandler)
-
-    server.serve_forever()
+if __name__ == '__main__':
+    main()

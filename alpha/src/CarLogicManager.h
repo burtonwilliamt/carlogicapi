@@ -18,17 +18,17 @@
 
 #include "PracticalSocket.h"
 #include <omnetpp.h>
-using namespace omnetpp;
+#include "Send_m.h"
+
+//using namespace omnetpp;
 
 class CarLogicManager : public cSimpleModule {
 public:
     CarLogicManager();
     ~CarLogicManager();
     void initialize(int stage);
-    int numInitStages() const { return std::max(cSimpleModule::numInitStages(), 2); }
     void finish();
     void handleMessage(cMessage *msg);
-    void handleSelfMsg(cMessage *msg);
 
 protected:
     string hostname;
@@ -37,7 +37,9 @@ protected:
     TCPSocket* socket;
     cMessage* executeOneTimestepTrigger;
 
+    void handleSelfMsg(cMessage *msg);
     void executeOneTimestep();
+    void send(Send* msg);
 };
 
 #endif /* CARLOGICMANAGER_H_ */

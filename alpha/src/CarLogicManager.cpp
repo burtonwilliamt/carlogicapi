@@ -35,10 +35,20 @@ void CarLogicManager::initialize(int stage) {
     hostname = par("hostname").stringValue();
     port = par("port");
 
-    TCPSocket soc(hostname, port);
-    socket = &soc;
+    try {
+        TCPSocket soc(hostname, port);
+        socket = &soc;
+    }
+    catch(SocketException &e) {
+        throw cRuntimeError("FUCK");
+        printf("RAWWWWW!");
+        cerr << e.what() << endl;
+        exit(1);
+    }
 
-    char initPacket[64] = "Hello";
+    socket->connect(hostname, port);
+
+    char initPacket[] = "Hello";
     int initPacketLength = strlen(initPacket);
     socket->send(initPacket, initPacketLength);
 
@@ -53,7 +63,8 @@ void CarLogicManager::handleMessage(cMessage *msg) {
         handleSelfMsg(msg);
         return;
     }
-    error("CarLogicManager doesn't handle messages from other modules");
+    //must be message to be sent to python
+    send(check_and_cast<Send *>(msg));
 }
 
 void CarLogicManager::handleSelfMsg(cMessage *msg) {
@@ -67,10 +78,18 @@ void CarLogicManager::handleSelfMsg(cMessage *msg) {
 
 void CarLogicManager::executeOneTimestep() {
     unsigned int buffer_len = 1024;
-    char buffer[buffer_len];
-    socket->recv(buffer, buffer_len);
+    char buffer[buffer_len+1];
+    int bytesReceived;
+    if ((bytesReceived = (socket->recv(buffer, buffer_len))) <= 0) return;
     if (buffer == NULL) return;
+    buffer[bytesReceived] = '\0';
     printf("buffer:\n%s", buffer);
+}
+
+void CarLogicManager::send(Send *msg) {
+    const char *buffer = msg->getData();
+    unsigned int buffer_len = strlen(buffer);
+    socket->send(buffer, buffer_len);
 }
 
 void CarLogicManager::finish() {

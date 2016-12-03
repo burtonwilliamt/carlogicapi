@@ -20,6 +20,7 @@
 #include "PracticalSocket.h"
 #include <stdio.h>
 #include <cstring>
+#include <string>
 
 #ifdef WIN32
   #include <winsock.h>         // For socket(), connect(), send(), and recv()
@@ -169,7 +170,7 @@ unsigned short Socket::resolveService(const string &service,
   struct servent *serv;        /* Structure containing service information */
 
   if ((serv = getservbyname(service.c_str(), protocol.c_str())) == NULL)
-    return stoi(service.c_str());  /* Service is port number */
+    return std::stoi(service.c_str());  /* Service is port number */
   else 
     return ntohs(serv->s_port);    /* Found port (network byte order) by name */
 }
