@@ -57,7 +57,7 @@ void CarLogicManager::handleMessage(cMessage *msg) {
         return;
     }
     //must be message to be sent to python
-    send(check_and_cast<Send *>(msg));
+    sendToPython(check_and_cast<Send *>(msg));
 }
 
 void CarLogicManager::handleSelfMsg(cMessage *msg) {
@@ -83,12 +83,11 @@ void CarLogicManager::executeOneTimestep() {
     char buffer[buffer_len+1];
     int bytesReceived;
     if ((bytesReceived = (socket->recv(buffer, buffer_len))) <= 0) return;
-    if (buffer == NULL) return;
     buffer[bytesReceived] = '\0';
     printf("buffer:%s\n", buffer);
 }
 
-void CarLogicManager::send(Send *msg) {
+void CarLogicManager::sendToPython(Send *msg) {
     const char *buffer = msg->getData();
     unsigned int buffer_len = strlen(buffer);
     socket->send(buffer, buffer_len);

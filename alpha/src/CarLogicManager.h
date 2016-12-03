@@ -20,7 +20,7 @@
 #include <omnetpp.h>
 #include "Send_m.h"
 
-//using namespace omnetpp;
+using namespace omnetpp;
 
 class CarLogicManager : public cSimpleModule {
 public:
@@ -39,7 +39,7 @@ protected:
 
     void handleSelfMsg(cMessage *msg);
     void executeOneTimestep();
-    void send(Send* msg);
+    void sendToPython(Send* msg);
 };
 
 #endif /* CARLOGICMANAGER_H_ */
