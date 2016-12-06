@@ -19,8 +19,10 @@
 #include "PracticalSocket.h"
 #include <omnetpp.h>
 #include "Send_m.h"
+#include <unordered_map>
+#include "AlphaAppl.h"
 
-//using namespace omnetpp;
+using namespace omnetpp;
 
 class CarLogicManager : public cSimpleModule {
 public:
@@ -29,6 +31,7 @@ public:
     void initialize(int stage);
     void finish();
     void handleMessage(cMessage *msg);
+    void addVehicle(AlphaAppl* veh);
 
 protected:
     string hostname;
@@ -37,9 +40,14 @@ protected:
     TCPSocket* socket;
     cMessage* executeOneTimestepTrigger;
 
+    int vehicleCounter;
+    std::unordered_map<int, AlphaAppl*> vehiclePointers;
+
+    void handleCommands(char* data);
+    string speedRequest(char* data);
     void handleSelfMsg(cMessage *msg);
     void executeOneTimestep();
-    void send(Send* msg);
+    void sendToPython(Send* msg);
 };
 
 #endif /* CARLOGICMANAGER_H_ */

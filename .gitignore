@@ -1,4 +1,3 @@
-
 #binaries
 alpha/alpha
 tutorials/VeinsTutorial/VeinsTutorial
@@ -18,3 +17,6 @@ out/
 alpha/Makefile
 alpha/src/Makefile
 tutorials/VeinsTutorial/Makefile
+
+#Misc
+alpha/simulations/.cmdenv-log
