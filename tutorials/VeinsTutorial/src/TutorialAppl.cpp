@@ -48,7 +48,7 @@ void TutorialAppl::handlePositionUpdate(cObject* obj) {
 }
 
 void TutorialAppl::sendWSM(WaveShortMessage* wsm) {
-    sendDelayedDown(wsm, 1000); //message dalay
+    sendDelayedDown(wsm, 1000); //message delay
 }
 
 void TutorialAppl::sendMessage(std::string msg) {
