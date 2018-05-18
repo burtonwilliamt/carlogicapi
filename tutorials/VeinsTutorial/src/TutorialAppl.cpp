@@ -48,12 +48,12 @@ void TutorialAppl::handlePositionUpdate(cObject* obj) {
 }
 
 void TutorialAppl::sendWSM(WaveShortMessage* wsm) {
-    sendDelayedDown(wsm, individualOffset);
+    sendDelayedDown(wsm, 1000); //message dalay
 }
 
 void TutorialAppl::sendMessage(std::string msg) {
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
+    WaveShortMessage *wsm = new WaveShortMessage("data", channel);
     wsm->setWsmData(msg.c_str());
     sendWSM(wsm);
 }
