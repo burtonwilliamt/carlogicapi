@@ -267,3 +267,23 @@ If you didn't notice that the project didn't build before running it, you'll get
 Exception occurred executing command line.
 Cannot run program "~/carlogicapi/tutorials/VeinsTutorial/VeinsTutorial" (in directory "~/carlogicapi/tutorials/VeinsTutorial/simulations"): error=2, No such file or directory
 ```
+##### No such file "BaseWaveAppLayer.h"
+
+This is the error:
+```
+15:02:35 **** Incremental Build of configuration gcc-debug for project VeinsTutorial ****
+make MODE=debug all 
+src/TutorialAppl.cpp
+In file included from src/TutorialAppl.cpp:3:0:
+src/TutorialAppl.h:11:68: fatal error: veins/modules/application/ieee80211p/BaseWaveApplLayer.h: No such file or directory
+ #include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+                                                                    ^
+compilation terminated.
+Makefile:101: recipe for target 'out/gcc-debug//src/TutorialAppl.o' failed
+make: *** [out/gcc-debug//src/TutorialAppl.o] Error 1
+
+15:02:36 Build Finished (took 166ms)
+```
+Solution: right click on *VeinsTutorial Project Folder > Properties > OMNeT++ > makemake > Options > Compile Tab* and include the path to the veins-4.6 src folder.
+
+[Screenshot of Solution](https://camo.githubusercontent.com/2afa59eb6a09dd73ce7c99c8bad2bc3682734488/68747470733a2f2f692e696d6775722e636f6d2f7a345572536c4b2e706e67)
