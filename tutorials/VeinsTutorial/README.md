@@ -286,4 +286,4 @@ make: *** [out/gcc-debug//src/TutorialAppl.o] Error 1
 ```
 Solution: right click on *VeinsTutorial Project Folder > Properties > OMNeT++ > makemake > Options > Compile Tab* and include the path to the veins-4.6 src folder.
 
-[Screenshot of Solution](https://camo.githubusercontent.com/2afa59eb6a09dd73ce7c99c8bad2bc3682734488/68747470733a2f2f692e696d6775722e636f6d2f7a345572536c4b2e706e67)
+![Screenshot of Solution](https://camo.githubusercontent.com/2afa59eb6a09dd73ce7c99c8bad2bc3682734488/68747470733a2f2f692e696d6775722e636f6d2f7a345572536c4b2e706e67)
